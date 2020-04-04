@@ -1,0 +1,21 @@
+
+[URLS]
+
+=> https://github.com/LongSoft/PFSExtractor
+=> https://github.com/LongSoft/UEFITool/releases
+=> https://github.com/LongSoft/Universal-IFR-Extractor/releases/latest
+
+1) Download BIOS update file from website
+2) Exec dell_extract_hdr.py using python2.7
+    => python dell_extract_hdr.py BIOS.exe
+
+    It will output a .hdr file
+3) Use "./pfsextractor .hdr" to convert .hdr to folder
+
+4) With UEFITool.app open .payload file inside the previously created folder
+
+5) With CMD+F search in Text for "CFG Lock" and export the "PE32 Image Section" by right clicking with mouse and clicking on "Extract as is"and saving the file as "Setup.bin"
+
+6) Finally use "./ifrextract Setup.bin Setup.txt" and with "cat Setup.txt | grep 'CFG Lock'" locate the offset
+
+
