@@ -3,11 +3,16 @@
 In order to extract BIOS payload from Dell BIOS upgrade package you need:
 
 - BIOS Update package
-- [PFSExtractor](https://github.com/LongSoft/PFSExtractor)
-- [IFRExtract](https://github.com/LongSoft/Universal-IFR-Extractor)
+- [Dell PFS Extract script](https://github.com/platomav/BIOSUtilities/blob/master/Dell%20PFS%20BIOS%20Extractor/Dell_PFS_Extract.py)
 - [UEFITool](https://github.com/LongSoft/UEFITool)
 - [modGRUBShell.efi](https://github.com/datasone/grub-mod-setup_var/releases)
+- [IFRExtract](https://github.com/LongSoft/Universal-IFR-Extractor)
+- [VerifyMsrE2.efi from OpenCorePkg EFI/OC/Tools folder](https://github.com/acidanthera/OpenCorePkg/releases/latest)
+
+####Deprecated
 - [~~Dell Extract hdr.py~~](https://github.com/theopolis/uefi-firmware-parser/blob/master/scripts/contrib/dell_extract_hdr.py)
+- [~~PFSExtractor~~](https://github.com/LongSoft/PFSExtractor)
+
 
 ## Dell
 
@@ -17,7 +22,7 @@ The following procedure was tested with success on Mac OS and Windows. On Linux 
 
 ### Step 1: extracting HDR file from BIOS EXE upgrade package
 
-On a bash terminal write: 
+~~On a bash terminal write: 
 
 `python2.7 dell_extract_hdr.py BIOS_UPGRADE.exe`
 
@@ -33,11 +38,19 @@ From a shell write:
 
 replacing `<PATH PFSExtractor>` with the path to PFSExtractor exec, and `PATH FILE.HDR` with the path of the file gathered from **Step 1**.
 
-The output will be a folder which will contain some files, including a file with `.payload` extension
+The output will be a folder which will contain some files, including a file with `.payload` extension~~
 
-### Step 3: finding PE32 image section CFG Lock offset
+### Step 1: extract BIOS payload bin from EXE
 
-Drag the `.payload` file inside UEFITool window and by pressing `Ctrl + F`, if on Windows, or `Command + F`, if on Mac OS, and selecting `Text` as search criteria, look for `CFG Lock`.
+From a terminal window write:
+
+`python3 Dell_PFS_Extract.py <BIOS_UPGRADE.EXE>`
+
+It will output a folder with already extracted `.hdr` file.
+
+### Step 2: finding PE32 image section CFG Lock offset
+
+Drag the ~~`.payload`~~ file which is named as `System BIOS with BIOS Guard vX.X.X` file inside UEFITool window and by pressing `Ctrl + F`, if on Windows, or `Command + F`, if on Mac OS, and selecting `Text` as search criteria, look for `CFG Lock`.
 
 On the bottom side of UEFITool you'll find a message such as 
 
@@ -45,7 +58,7 @@ On the bottom side of UEFITool you'll find a message such as
 
 Right click on `PE32 image section`, select `Extract as is` and save the file with `.bin` extension.
 
-### Step 4: convert .bin file in .txt file
+### Step 3: convert .bin file in .txt file
 
 With `IFRExtract` you can convert a `.bin` file in a  `.txt` file. 
 
@@ -53,7 +66,7 @@ On a terminal write:
 
 `<PATH IFRExtract> <PATH FILE.BIN> setup.txt`
 
-### Step 5: finding CFG Lock offset 
+### Step 4: finding CFG Lock offset 
 
 With a text editor open the previously converted file and look for `CFG Lock`
 
@@ -78,17 +91,27 @@ Fire up the modGRUBShell.efi with Clover UEFI shell:
 
 `FS0:\EFI\EFI\CLOVER\tools\modGRUBShell.efi` starts the modGRUBShell.efi which is inside `FS0:\`. 
 
-After starting the modGRUBShell.efi write
+After starting the modGRUBShell.efi write firstly 
+`setup_var 0xXYZ` to check the default value of the found offset. If it's `0x1` then you can proceed with the next command: 
+
 `setup_var 0xXYZ 0x00` where `0xXYZ` is the offset previously found.
 
 Once did it, turn off the PC and turn it on again, not rebooting.
 
-Finally disable from `config.plist`:
+### Step 7: checking if CFG Lock is really unlocked
+
+Repeat **Step 6** and instead of firing up `modGRUBShell.efi`, fire up `VerifyMsrE2.efi`. It will produce an output such as:
+
+- `This firmware has LOCKED MSR 0xE2 Register!` if CFG Lock isn't unlocked (aka `CFG Lock Offset` value is `0x1`)
+- `This firmware has UNLOCKED MSR 0xE2 Register!` if CFG Lock is unlocked (aka `CFG Lock Offset` value is `0x0`)
+
+If the message produced is like the last one, then it means that CFG Lock is unlocked and you can proceed disabling from `config.plist`:
 
 - **Clover**: `KernelPM` and/or `KernelXCPM`
 - **OpenCore**: `AppleCpuPmCfgLock` and/ore `AppleXcpmCfgLock`
 
 as those patches maybe too instable and can cause sudden reboots on your rig.
+
 
 **Credits**
 
@@ -97,6 +120,8 @@ as those patches maybe too instable and can cause sudden reboots on your rig.
 [theopolis](https://github.com/theopolis) for Python script
 
 [Longsoft](https://github.com/Longsoft) for PFSExtractor
+
+[platomav](https://github.com/platomav/BIOSUtilities) for Dell Extraction script utility
 
 [Il forum MacOS86](https://macos86.it) for giving us the italian repository. Check it out [here](https://macos86.github.io/Estrazione-BIOS-da-exe/)
 
