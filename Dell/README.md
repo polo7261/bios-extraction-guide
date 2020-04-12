@@ -20,7 +20,7 @@ On Dell's motherboard, BIOS extracting guide is slightly different than other ve
 
 The following procedure was tested with success on Mac OS and Windows. On Linux I've found some compiling errors with PFSExtractor. Hope to find a workarond asap.
 
-### Step 1: extracting HDR file from BIOS EXE upgrade package
+~~### Step 1: extracting HDR file from BIOS EXE upgrade package~~
 
 ~~On a bash terminal write:~~
 
