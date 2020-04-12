@@ -28,17 +28,17 @@ The following procedure was tested with success on Mac OS and Windows. On Linux 
 
 ~~This script will generate a file with `.hdr` extension~~
 
-### Step 2: extract HDR file
+~~### Step 2: extract HDR file~~
 
-Using PFSExtractor, compilable with g++ on MacOS, or downloading the exec from GitHub repo, you can extract the file `.hdr` gathered from **Step 1**.
+~~Using PFSExtractor, compilable with g++ on MacOS, or downloading the exec from GitHub repo, you can extract the file `.hdr` gathered from **Step 1**.~~
 
-From a shell write:
+~~From a shell write:~~
 
-`<PATH PFSExtractor> <PATH FILE.HDR>`
+~~`<PATH PFSExtractor> <PATH FILE.HDR>`~~
 
-replacing `<PATH PFSExtractor>` with the path to PFSExtractor exec, and `PATH FILE.HDR` with the path of the file gathered from **Step 1**.
+~~replacing `<PATH PFSExtractor>` with the path to PFSExtractor exec, and `PATH FILE.HDR` with the path of the file gathered from **Step 1**.~~
 
-The output will be a folder which will contain some files, including a file with `.payload` extension~~
+~~The output will be a folder which will contain some files, including a file with `.payload` extension~~
 
 ### Step 1: extract BIOS payload bin from EXE
 
