@@ -22,11 +22,11 @@ The following procedure was tested with success on Mac OS and Windows. On Linux 
 
 ### Step 1: extracting HDR file from BIOS EXE upgrade package
 
-~~On a bash terminal write: 
+~~On a bash terminal write:~~
 
-`python2.7 dell_extract_hdr.py BIOS_UPGRADE.exe`
+~~`python2.7 dell_extract_hdr.py BIOS_UPGRADE.exe`~~
 
-This script will generate a file with `.hdr` extension
+~~This script will generate a file with `.hdr` extension~~
 
 ### Step 2: extract HDR file
 
