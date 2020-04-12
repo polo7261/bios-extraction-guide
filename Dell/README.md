@@ -7,8 +7,7 @@ In order to extract BIOS payload from Dell BIOS upgrade package you need:
 - [IFRExtract](https://github.com/LongSoft/Universal-IFR-Extractor)
 - [UEFITool](https://github.com/LongSoft/UEFITool)
 - [modGRUBShell.efi](https://github.com/datasone/grub-mod-setup_var/releases)
-- [Dell Extract hdr.py](https://github.com/theopolis/uefi-firmware-parser/blob/master/scripts/contrib/dell_extract_hdr.py)
-
+- [~~Dell Extract hdr.py~~](https://github.com/theopolis/uefi-firmware-parser/blob/master/scripts/contrib/dell_extract_hdr.py)
 
 ## Dell
 
