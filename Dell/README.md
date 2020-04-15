@@ -1,4 +1,4 @@
-## Introduzione
+## Introduction
 
 In order to extract BIOS payload from Dell BIOS upgrade package you need:
 
