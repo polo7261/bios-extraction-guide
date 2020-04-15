@@ -108,7 +108,7 @@ Repeat **Step 6** and instead of firing up `modGRUBShell.efi`, fire up `VerifyMs
 If the message produced is like the last one, then it means that CFG Lock is unlocked and you can proceed disabling from `config.plist`:
 
 - **Clover**: `KernelPM` and/or `KernelXCPM`
-- **OpenCore**: `AppleCpuPmCfgLock` and/ore `AppleXcpmCfgLock`
+- **OpenCore**: `AppleCpuPmCfgLock` and/or `AppleXcpmCfgLock`
 
 as those patches maybe too instable and can cause sudden reboots on your rig.
 
