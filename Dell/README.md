@@ -9,36 +9,11 @@ In order to extract BIOS payload from Dell BIOS upgrade package you need:
 - [IFRExtract](https://github.com/LongSoft/Universal-IFR-Extractor)
 - [VerifyMsrE2.efi from OpenCorePkg EFI/OC/Tools folder](https://github.com/acidanthera/OpenCorePkg/releases/latest)
 
-####Deprecated
-- [~~Dell Extract hdr.py~~](https://github.com/theopolis/uefi-firmware-parser/blob/master/scripts/contrib/dell_extract_hdr.py)
-- [~~PFSExtractor~~](https://github.com/LongSoft/PFSExtractor)
-
-
-## Dell
 
 On Dell's motherboard, BIOS extracting guide is slightly different than other vendors. 
 
 The following procedure was tested with success on Mac OS and Windows. On Linux I've found some compiling errors with PFSExtractor. Hope to find a workarond asap.
 
-~~### Step 1: extracting HDR file from BIOS EXE upgrade package~~
-
-~~On a bash terminal write:~~
-
-~~`python2.7 dell_extract_hdr.py BIOS_UPGRADE.exe`~~
-
-~~This script will generate a file with `.hdr` extension~~
-
-~~### Step 2: extract HDR file~~
-
-~~Using PFSExtractor, compilable with g++ on MacOS, or downloading the exec from GitHub repo, you can extract the file `.hdr` gathered from **Step 1**.~~
-
-~~From a shell write:~~
-
-~~`<PATH PFSExtractor> <PATH FILE.HDR>`~~
-
-~~replacing `<PATH PFSExtractor>` with the path to PFSExtractor exec, and `PATH FILE.HDR` with the path of the file gathered from **Step 1**.~~
-
-~~The output will be a folder which will contain some files, including a file with `.payload` extension~~
 
 ### Step 1: extract BIOS payload bin from EXE
 
