@@ -48,7 +48,9 @@ From a terminal window write:
 
 It will output a folder with already extracted `.hdr` file.
 
-### Step 2: finding PE32 image section CFG Lock offset
+# Unlock CFG Lock
+
+### Step 1: finding PE32 image section CFG Lock offset
 
 Drag the ~~`.payload`~~ file which is named as `System BIOS with BIOS Guard vX.X.X` file inside UEFITool window and by pressing `Ctrl + F`, if on Windows, or `Command + F`, if on Mac OS, and selecting `Text` as search criteria, look for `CFG Lock`.
 
@@ -58,7 +60,7 @@ On the bottom side of UEFITool you'll find a message such as
 
 Right click on `PE32 image section`, select `Extract as is` and save the file with `.bin` extension.
 
-### Step 3: convert .bin file in .txt file
+### Step 2: convert .bin file in .txt file
 
 With `IFRExtract` you can convert a `.bin` file in a  `.txt` file. 
 
@@ -66,7 +68,7 @@ On a terminal write:
 
 `<PATH IFRExtract> <PATH FILE.BIN> setup.txt`
 
-### Step 4: finding CFG Lock offset 
+### Step 3: finding CFG Lock offset 
 
 With a text editor open the previously converted file and look for `CFG Lock`
 
@@ -78,7 +80,7 @@ If anything is found, you'll find something as
 
 Setting this variable value with `0x00` the `CFG Lock` will be disabled, granting access to MSR 0xE2 registry.
 
-### Step 6: setting CFG Lock to 0x00
+### Step 4: setting CFG Lock to 0x00
 
 With a modified GRUB shell it's possible to change the value of the variable previously found.
 
@@ -98,7 +100,7 @@ After starting the modGRUBShell.efi write firstly
 
 Once did it, turn off the PC and turn it on again, not rebooting.
 
-### Step 7: checking if CFG Lock is really unlocked
+### Step 5: checking if CFG Lock is really unlocked
 
 Repeat **Step 6** and instead of firing up `modGRUBShell.efi`, fire up `VerifyMsrE2.efi`. It will produce an output such as:
 
