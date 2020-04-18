@@ -123,7 +123,7 @@ as those patches maybe too instable and can cause sudden reboots on your rig.
 
 [platomav](https://github.com/platomav/BIOSUtilities) for Dell Extraction script utility
 
-[Il forum MacOS86](https://macos86.it) for giving us the italian repository. Check it out [here](https://macos86.github.io/Estrazione-BIOS-da-exe/)
+[MacOS86 forum](https://macos86.it) for giving us the italian repository. Check it out [here](https://macos86.github.io/Estrazione-BIOS-da-exe/)
 
 [dreamwhite](https://github.com/dreamwhite) for testing on different MOBO vendors and for contributing on different parts of original guide
 
