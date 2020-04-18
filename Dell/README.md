@@ -90,7 +90,7 @@ If the message produced is like the last one, then it means that CFG Lock is unl
 as those patches maybe too instable and can cause sudden reboots on your rig.
 
 
-**Credits**
+# Credits
 
 [Khronokernel](https://khronokernel-2.gitbook.io/opencore-vanilla-desktop-guide/extras/msr-lock) for MSR 0xE2 unlocking guide
 
