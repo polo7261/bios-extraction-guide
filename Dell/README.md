@@ -61,12 +61,10 @@ With a modified GRUB shell it's possible to change the value of the variable pre
 
 Fire up the modGRUBShell.efi with Clover UEFI shell:
 
-- from Clover fire up UEFI shell and navigate the FS (with cd and ls basic UNIX navigation commands) and find the EFI partition where it's located modGRUBShell.efi.
 - from OpenCore start the boot entry `modGRUBShell.efi` (by adding it to config.plist)
 
 **Example**
 
-`FS0:\EFI\EFI\CLOVER\tools\modGRUBShell.efi` starts the modGRUBShell.efi which is inside `FS0:\`. 
 
 After starting the modGRUBShell.efi write firstly 
 `setup_var 0xXYZ` to check the default value of the found offset. If it's `0x1` then you can proceed with the next command: 
@@ -84,7 +82,6 @@ Repeat **Step 6** and instead of firing up `modGRUBShell.efi`, fire up `VerifyMs
 
 If the message produced is like the last one, then it means that CFG Lock is unlocked and you can proceed disabling from `config.plist`:
 
-- **Clover**: `KernelPM` and/or `KernelXCPM`
 - **OpenCore**: `AppleCpuPmCfgLock` and/or `AppleXcpmCfgLock`
 
 as those patches maybe too instable and can cause sudden reboots on your rig.
